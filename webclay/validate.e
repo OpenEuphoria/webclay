@@ -1,11 +1,12 @@
 include std/regex.e
+include std/text.e
 
 --
 -- Validators for Intrigue
 --
 
 public function not_empty(sequence content)
-	return length(content) > 0
+	return length(trim(content)) > 0
 end function
 
 public function size_within(sequence content, integer low, integer high)
