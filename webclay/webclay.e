@@ -21,7 +21,7 @@ public map:map cookies = map:new()
 --**
 -- Return Types
 
-public enum OK, TEXT, REDIRECT, INVALID, VALID
+public enum OK, TEXT, REDIRECT, REDIRECT_303, INVALID, VALID
 public enum NONE=-1, ATOM, INTEGER, SEQUENCE, OBJECT
 
 enum CONVERT_TYPE, CONVERT_NAME, CONVERT_DEFAULT
@@ -343,5 +343,9 @@ public procedure handle_request(integer app_rid=-1)
 			printf(1, "Content-Type: text/html\n\n<html><body>\n", {})
 			printf(1, status[2], status[3])
 			printf(1, "</body></html>\n", {})
+		
+		case REDIRECT_303 then
+			printf(1, "Status: 303 See Other\n", {})
+			printf(1, "Location: %s\n\n", { status[2] })
 	end switch
 end procedure
