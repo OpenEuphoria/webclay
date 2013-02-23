@@ -1,5 +1,6 @@
 include std/unittest.e
-include ../src/validate.e as v
+include ../webclay/validate.e as v
+
 
 test_equal("not_empty #1", 0, v:not_empty(""))
 test_equal("not_empty #2", 1, v:not_empty("John Doe"))

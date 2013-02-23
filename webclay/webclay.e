@@ -110,10 +110,11 @@ public procedure add_header(sequence name, sequence value)
 end procedure
 
 --**
--- Add a session cookie
+-- Create a correctly formated cookie header string
 
-public procedure add_cookie(sequence name, sequence value, object path=0, object expires=0, 
+public function create_cookie(sequence name, sequence value, object path=0, object expires=0, 
 		object domain=0)
+	
 	sequence cookie = name & "=" & value
 	if sequence(domain) then
 		cookie &= "; domain=" & domain
@@ -126,8 +127,16 @@ public procedure add_cookie(sequence name, sequence value, object path=0, object
 	elsif sequence(expires) then
 		cookie &= "; expires=" & expires
 	end if
+	
+	return cookie
+end function
 
-	add_header("Set-cookie", cookie)
+--**
+-- Add a session cookie
+
+public procedure add_cookie(sequence name, sequence value, object path=0, object expires=0, 
+		object domain=0)
+	add_header("Set-cookie", create_cookie(name, value, path, expires, domain))
 end procedure
 
 --**
