@@ -122,7 +122,7 @@ public procedure add_cookie(sequence name, sequence value, object path=0, object
 		cookie &= "; path=" & path
 	end if
 	if datetime:datetime(expires) then
-		cookie &= "; expires=" & datetime:format(expires, "%a, %d-%b-%y %H:%m:%S GMT")
+		cookie &= "; expires=" & datetime:format(expires, "%a, %d-%b-%Y %H:%m:%S GMT")
 	elsif sequence(expires) then
 		cookie &= "; expires=" & expires
 	end if
