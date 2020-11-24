@@ -1,7 +1,0 @@
-[patterns]
-**.ex = native
-**.e = native
-**.html = native
-**.etml = native
-**.txt = native
-**.conf = native
